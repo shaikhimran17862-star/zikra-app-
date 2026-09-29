@@ -21,8 +21,9 @@ jobs:
       - name: Install Buildozer Dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential ccache git libffi-dev libssl-dev libtinfo5 zlib1g-dev openjdk-17-jdk unzip
-          pip install --upgrade buildozer cython==0.29.33
+          sudo apt-get install -y build-essential ccache git libffi-dev libssl-dev libtinfo6 zlib1g-dev openjdk-17-jdk unzip
+          pip install --upgrade pip setuptools
+          pip install buildozer cython
 
       - name: Build APK with Buildozer
         run: |
