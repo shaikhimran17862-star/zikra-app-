@@ -18,7 +18,7 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Install Buildozer Dependencies
+      - name: Install Dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y build-essential ccache git libffi-dev libssl-dev libtinfo6 zlib1g-dev openjdk-17-jdk unzip
@@ -27,7 +27,7 @@ jobs:
 
       - name: Build APK with Buildozer
         run: |
-          yes | buildozer -v android debug
+          buildozer -v android debug
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
