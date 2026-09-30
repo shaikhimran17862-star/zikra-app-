@@ -26,6 +26,12 @@ jobs:
         sudo apt update
         sudo apt install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libssl-dev libffi-dev liblldb-dev
 
-    - name: Accept Android SDK Licenses & Build
+    - name: Build with Buildozer
       run: |
-        yes | buildozer -v android debug
+        buildozer -v android debug
+
+    - name: Upload APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: Zikra-APK
+        path: bin/*.apk
