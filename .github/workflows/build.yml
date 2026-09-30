@@ -123,7 +123,7 @@ jobs:
                 setTimeout(() => {
                   const botMsg = document.createElement('div');
                   botMsg.className = 'message bot';
-                  botMsg.textContent = "Zikra AI v1.0 Ready! (Yeh aapka UI prototype hai).";
+                  botMsg.textContent = "Zikra AI v1.0 Ready!";
                   chat.appendChild(botMsg);
                   chat.scrollTop = chat.scrollHeight;
                 }, 800);
@@ -134,25 +134,18 @@ jobs:
           EOF
 
       - name: Set up Java JDK
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
-      - name: Build Webview APK
-        run: |
-          npm install -g cordova
-          cordova create zikra_app com.zikra.ai ZikraAI
-          cd zikra_app
-          cordova platform add android
-          cp ../index.html www/index.html
-          cordova build android --debug
+      - name: Build Android APK
+        uses: cordova-actions/cordova-build@v1
+        with:
+          platform: android
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: Zikra-AI-Companion-v1.0
-          path: zikra_app/platforms/android/app/build/outputs/apk/debug/app-debug.apk
+          path: output/*.apk
