@@ -6,11 +6,11 @@ source.dir = .
 source.include_exts = py,png,jpg,kv,atlas,json,wav,mp3
 version = 1.0.0
 
-# Requirements
-requirements = python3,kivy,requests,urllib3,certifi,pyjnius,google-generativeai
+# Requirements (Added plyer for Camera)
+requirements = python3,kivy,requests,urllib3,certifi,pyjnius,google-generativeai,plyer
 
-# Permissions required for Zikra
-android.permissions = INTERNET,SYSTEM_ALERT_WINDOW,FOREGROUND_SERVICE,BIND_ACCESSIBILITY_SERVICE,READ_EXTERNAL_STORAGE,WRITE_EXTERNAL_STORAGE,RECORD_AUDIO,CALL_PHONE,CAMERA,POST_NOTIFICATIONS
+# Permissions
+android.permissions = INTERNET,CAMERA,WRITE_EXTERNAL_STORAGE,READ_EXTERNAL_STORAGE,RECORD_AUDIO,SYSTEM_ALERT_WINDOW,FOREGROUND_SERVICE,BIND_ACCESSIBILITY_SERVICE
 
 # Target API levels for Realme C25
 android.api = 33
