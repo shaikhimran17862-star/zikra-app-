@@ -1,26 +1,72 @@
-name: Build Zikra APK
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zikra AI Companion</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #121212;
+      color: #ffffff;
+    }
+    #splash-screen {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+    #main-app {
+      display: none; /* Starting me hidden rahega */
+      padding: 20px;
+    }
+    .btn-start {
+      margin-top: 20px;
+      padding: 12px 24px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
 
-on:
-  push:
-    branches: [ main, master ]
-  workflow_dispatch:
+  <!-- Splash / Loading Screen -->
+  <div id="splash-screen">
+    <h2>Zikra AI Companion v1.0</h2>
+    <p>Ready to build!</p>
+    <!-- Fallback Button in case auto-redirect ruk jaaye -->
+    <button class="btn-start" onclick="startApp()">Start App</button>
+  </div>
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    container:
-      image: kivy/buildozer:latest
+  <!-- Main App Content -->
+  <div id="main-app">
+    <h1>Welcome to Zikra AI</h1>
+    <p>Aapka companion taiyar hai!</p>
+    <!-- Yahan aapka baaki chat ya main UI ka code aayega -->
+  </div>
 
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
+  <script>
+    function startApp() {
+      // Splash screen hide karo aur main app dikhao
+      document.getElementById('splash-screen').style.display = 'none';
+      document.getElementById('main-app').style.display = 'block';
+    }
 
-      - name: Build APK
-        run: |
-          yes | buildozer -v android debug
+    // Auto switch after 2 seconds (Optional)
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        startApp();
+      }, 2000);
+    });
+  </script>
 
-      - name: Upload APK Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: Zikra-APK
-          path: bin/*.apk
+</body>
+</html>
